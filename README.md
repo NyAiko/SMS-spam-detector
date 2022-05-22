@@ -5,7 +5,7 @@ The aim of this project is to detect spam messages and classify them. We start f
 The dataset is a '.csv' file from www.kaggle.com. 
 It has 5571 rows of samples and two columns representing the labels and the messages.
 The data is imported by using Pandas library. 
-We preprocess the text data with NLTK and Scikit-Learn (removing unecessary characters,remove stop words, stemming words,...).
+We preprocess the text data with NLTK and Scikit-Learn (removing unecessary characters, stop words, stemming words,...).
  
 The class was imbalanced so we oversample the minority class in the training set by using Synthetic Minority Oversampling TEchnique or SMOTE.
 This technique will Increase minority class by introducing synthetic examples through connecting all k (default = 5) minority class nearest neighbors based on the Euclidian distance between the features spaces.
