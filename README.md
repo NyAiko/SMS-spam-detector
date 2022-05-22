@@ -1,5 +1,5 @@
 # SMS-spam-detetor
-The aim of this project is to detect spam messages and classify them. We start from preprocessing the raw data until model building then We compared the performance of all the trained the classifier.
+The aim of this project is to detect spam messages and classify them. We start from preprocessing the raw data until model building then we compared the performance of all the trained the classifier.
 
 # Methods:
 The dataset is a '.csv' file from www.kaggle.com. 
