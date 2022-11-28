@@ -1,48 +1,27 @@
-# SMS-spam-detetor
-The aim of this project is to detect spam messages and classify them. We start from preprocessing the raw data until model building then we compared the performance of all the trained the classifier.
-
-# Methods:
-The dataset is a '.csv' file from www.kaggle.com. 
-It has 5571 rows of samples and two columns representing the labels and the messages.
-The data is imported by using Pandas library. 
-We preprocess the text data with NLTK and Scikit-Learn (removing unecessary characters, stop words, stemming words,...).
- 
-The class was imbalanced so we oversample the minority class in the training set by using Synthetic Minority Oversampling TEchnique or SMOTE.
-This technique will Increase minority class by introducing synthetic examples through connecting all k (default = 5) minority class nearest neighbors based on the Euclidian distance between the features spaces.
-
-Then we train Machine Learning models : Logistic Regression, Decision Tree, Support Vector Machine, and Random Forest.
-
-Logistic regression is a supervised machine learning model used to predict a binary outcome, such as yes or no, 
-based on prior observations of a data set.
-  ![sigmoid](https://user-images.githubusercontent.com/105801284/169696535-7bf8c498-965c-4e58-ae33-31d1105526d1.jpg)
-
-
-
-
-
-It predicts a dependent data variable by analyzing the relationship between one or more existing independent variables. 
-We fit our model to an S-shaped curve or the Sigmoid function that can take any real-value number between 0 and 1.
-If the output of a certain input is beyond a defined threshold (let's say 0.5), the input is classified to the class 1 and to the class 0 otherwise.
-
-Decision Tree classifer works like structure where internal  nodes represent a test on an attribute, each branch represents outcome of a test, and each leaf node represents class label, and the decision is made after computing all attributes.
-  ![dtree](https://user-images.githubusercontent.com/105801284/169696573-10e85c8c-e080-48ec-b0cc-20ed0db5c2bc.jpg)
-
-
-The key  objective of Support Vector Machine or SVM is to draw a optimal hyperplane that  better separates the two classes such that the margin is maximum between the hyperplane and the observations. 
-  ![svm](https://user-images.githubusercontent.com/105801284/169696554-03709685-c3f8-4a99-833e-434dbc95ba5f.jpg)
-
-
-
-Random forest is an ensemble methods or meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and averages the predicted outcomes to improve the accuracy and control overfitting.
-   ![rf](https://user-images.githubusercontent.com/105801284/169696564-6ab5f2f8-50e6-4006-9b2d-c68343722719.jpg)
-
-
-
-In the end we sum up the scores of all the trained models.
-
-# Required Library:
-- NLTK
-- Pandas
-- Scikit-Learn
-- imblearn
-
+# Project 1: SMS Spam Detector - Overview
+Spam is an advertising material send by email or SMS to people who have not asked for. In this project, we will build an SMS Spam Detector with Machine Learning algorithms. It is built with the “spam.csv” dataset downloaded from Kaggle. The class is highly imbalanced so the metric chosen for this project are the Precision, Recall, and F1 score.
+The projects have the following steps:
+* Clean the message text data by removing noises 
+* Build a pipeline to preprocess the clean text data and select the relevant features for model building;
+* Build Machine Learning models and tune hyperparamters with GridsearchCV;
+* Build a simple web app with Flask;
+Requirements:
+* Python 3.8
+* Numpy
+* Pandas
+* Scikit-Learn
+* Flask
+### Step 1: Text Cleaning:
+Removing the noises such as punctuations, numbers, special characters, stopwords, lemmatization and stemming reduce its size and make it easier to transform into a feature vectors before feeding them into a classifier. The function “clean_text_data” perform this task on the imported Pandas Dataframe.
+### Step 2: Text preprocessing and feature selection:
+The clean text is then transformed into a feature vectors with the HashingVectorizer from Scikit-Learn. Then we will select the most relevant elements of the feature vectors by using a feature selector based on the coefficients of the Stochastic Gradient Descent Classifier model.
+### Step 3: Model building:
+With the function “train_models”, we will train the following models:
+* Logistic Regression
+* Decision Tree Classifier
+* Support Vector Machine
+* Random Forest Classifier
+We picked Logistic Regression and the Support Vector Machine because they perform well, and didn’t overfit their training set. Then, we optimize the hyperparamters using GridSearchCV.
+![spam_ml_pipeline](https://user-images.githubusercontent.com/105801284/204245907-cb75a519-6c12-4445-ab2b-1ca3af60741c.jpg)
+### Build a Flask API endpoints:
+The Flask API endpoints will be built so that we can make a request from that API to predict if a message is a “SPAM”. Our web app will take as input a message and return a predicted class.
